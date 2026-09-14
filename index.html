@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aura Fashion | Tienda de Ropa</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- BARRA SUPERIOR -->
+    <div class="top-bar">
+        Envíos disponibles | Compra fácil y segura
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <div class="logo">
+            AURA <span>FASHION</span>
+        </div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Productos</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+
+        <button class="cart-button" onclick="abrirCarrito()">
+            🛒 Carrito
+            <span id="contador">0</span>
+        </button>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <p class="small-title">NUEVA COLECCIÓN</p>
+
+            <h1>
+                Viste tu estilo.
+                <br>
+                Vive tu <span>Aura.</span>
+            </h1>
+
+            <p>
+                Encuentra prendas únicas para expresar tu personalidad.
+            </p>
+
+            <a href="#productos" class="hero-button">
+                Ver productos
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- CATEGORÍAS -->
+    <section class="categories">
+
+        <div class="category">
+            <div>👗</div>
+            <h3>Mujer</h3>
+            <p>Moda y estilo</p>
+        </div>
+
+        <div class="category">
+            <div>👕</div>
+            <h3>Hombre</h3>
+            <p>Estilo urbano</p>
+        </div>
+
+        <div class="category">
+            <div>✨</div>
+            <h3>Novedades</h3>
+            <p>Lo más reciente</p>
+        </div>
+
+        <div class="category">
+            <div>🔥</div>
+            <h3>Ofertas</h3>
+            <p>Precios especiales</p>
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTOS -->
+    <section class="products-section" id="productos">
+
+        <div class="section-title">
+
+            <p>CONOCE NUESTRA TIENDA</p>
+
+            <h2>Productos destacados</h2>
+
+            <span>
+                Elige tus productos favoritos y agrégalos al carrito.
+            </span>
+
+        </div>
+
+
+        <div class="products-grid" id="productos-container">
+
+            <!-- PRODUCTOS CREADOS CON JAVASCRIPT -->
+
+        </div>
+
+    </section>
+
+
+    <!-- NOSOTROS -->
+    <section class="about" id="nosotros">
+
+        <div class="about-content">
+
+            <p>CONÓCENOS</p>
+
+            <h2>Tu estilo, nuestra pasión.</h2>
+
+            <p>
+                En Aura Fashion buscamos ofrecer ropa moderna,
+                cómoda y con estilo para que cada persona pueda
+                encontrar prendas que representen quién es.
+            </p>
+
+            <p>
+                Compra de manera sencilla y recibe atención
+                personalizada directamente por WhatsApp.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACTO -->
+    <section class="contact" id="contacto">
+
+        <h2>¿Tienes alguna pregunta?</h2>
+
+        <p>
+            Escríbenos por WhatsApp y te ayudaremos.
+        </p>
+
+        <button onclick="contactarWhatsApp()" class="whatsapp-button">
+            💬 Hablar por WhatsApp
+        </button>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-logo">
+            AURA FASHION
+        </div>
+
+        <p>
+            © 2026 Aura Fashion - Todos los derechos reservados.
+        </p>
+
+        <p>
+            Moda • Estilo • Confianza
+        </p>
+
+    </footer>
+
+
+    <!-- CARRITO -->
+    <div id="carrito-overlay" class="overlay">
+
+        <div class="cart">
+
+            <div class="cart-header">
+
+                <h2>🛒 Mi carrito</h2>
+
+                <button onclick="cerrarCarrito()" class="close">
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div id="carrito-productos">
+
+                <p class="empty-cart">
+                    Tu carrito está vacío.
+                </p>
+
+            </div>
+
+
+            <div class="cart-footer">
+
+                <div class="total">
+
+                    <span>Total:</span>
+
+                    <strong id="total">
+                        $0
+                    </strong>
+
+                </div>
+
+                <button
+                    onclick="comprarWhatsApp()"
+                    class="buy-button">
+
+                    💬 Comprar por WhatsApp
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
