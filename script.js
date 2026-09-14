@@ -24,7 +24,7 @@ const productos = [
         categoria: "Mujer",
         descripcion: "Camisa moderna y cómoda para cualquier ocasión.",
         precio: 85000,
-        imagen: "img/producto1.jpg"
+        imagen: "producto1.jpg"
     },
 
     {
@@ -33,7 +33,7 @@ const productos = [
         categoria: "Mujer",
         descripcion: "Vestido ideal para ocasiones especiales.",
         precio: 120000,
-        imagen: "img/producto2.jpg"
+        imagen: "producto2.jpg"
     },
 
     {
@@ -42,7 +42,7 @@ const productos = [
         categoria: "Mujer",
         descripcion: "Jean cómodo con diseño moderno.",
         precio: 110000,
-        imagen: "img/producto3.jpg"
+        imagen: "producto3.jpg"
     },
 
     {
@@ -51,7 +51,7 @@ const productos = [
         categoria: "Hombre",
         descripcion: "Camisa casual para un estilo moderno.",
         precio: 95000,
-        imagen: "img/producto4.jpg"
+        imagen: "producto4.jpg"
     },
 
     {
@@ -60,7 +60,7 @@ const productos = [
         categoria: "Hombre",
         descripcion: "Pantalón cómodo y versátil.",
         precio: 115000,
-        imagen: "img/producto5.jpg"
+        imagen: "producto5.jpg"
     },
 
     {
@@ -69,7 +69,7 @@ const productos = [
         categoria: "Novedades",
         descripcion: "Conjunto moderno para destacar tu estilo.",
         precio: 150000,
-        imagen: "img/producto6.jpg"
+        imagen: "producto6.jpg"
     },
      {
         id: 7,
@@ -77,7 +77,7 @@ const productos = [
         categoria: "Novedades",
         descripcion: "Conjunto moderno para destacar tu estilo.",
         precio: 150000,
-        imagen: "img/producto6.jpg"
+        imagen: "producto6.jpg"
     },
      {
         id: 8,
@@ -85,7 +85,7 @@ const productos = [
         categoria: "Novedades",
         descripcion: "Conjunto moderno para destacar tu estilo.",
         precio: 150000,
-        imagen: "img/producto6.jpg"
+        imagen: "producto6.jpg"
     },
      {
         id: 9,
@@ -93,7 +93,7 @@ const productos = [
         categoria: "Novedades",
         descripcion: "Conjunto moderno para destacar tu estilo.",
         precio: 150000,
-        imagen: "img/producto6.jpg"
+        imagen: "producto6.jpg"
     },
      {
         id: 10,
@@ -101,7 +101,7 @@ const productos = [
         categoria: "Novedades",
         descripcion: "Conjunto moderno para destacar tu estilo.",
         precio: 50000,
-        imagen: "img/producto6.jpg"
+        imagen: "producto6.jpg"
     }
 
 ];
