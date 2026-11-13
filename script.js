@@ -17,41 +17,37 @@ const NUMERO_WHATSAPP = "3147122064";
 // ==========================================
 
 const productos = [
-
     {
         id: 1,
-        nombre: "Camisa Casual",
-        categoria: "Mujer",
-        descripcion: "Camisa moderna y cómoda para cualquier ocasión.",
+        nombre: "Buso Hellstar 1",
+        categoria: "HOMBRE",
+        descripcion: "Comodo y de buena calidad.",
         precio: 85000,
-        imagen: "producto1.jpg"
+        imagen: "BUSOHELLSTAR1.jpg"
     },
-
     {
         id: 2,
-        nombre: "Vestido Elegante",
-        categoria: "Mujer",
-        descripcion: "Vestido ideal para ocasiones especiales.",
+        nombre: "Buso Hellstar 2",
+        categoria: "HOMBRE",
+        descripcion: "Estilo urbano y moderno.",
         precio: 120000,
-        imagen: "producto2.jpg"
+        imagen: "BUSOHELLSTAR2.jpg"
     },
-
     {
         id: 3,
-        nombre: "Jean Clásico",
-        categoria: "Mujer",
-        descripcion: "Jean cómodo con diseño moderno.",
+        nombre: "Sudadera Hellstar 1",
+        categoria: "HOMBRE",
+        descripcion: "Sudadera cómoda de alta calidad.",
         precio: 110000,
-        imagen: "producto3.jpg"
+        imagen: "SUDADERAHELLSTAR3.jpg"
     },
-
     {
         id: 4,
-        nombre: "Camisa Hombre",
-        categoria: "Hombre",
-        descripcion: "Camisa casual para un estilo moderno.",
+        nombre: "Sudadera Hellstar 2",
+        categoria: "HOMBRE",
+        descripcion: "Diseño exclusivo y abrigado.",
         precio: 95000,
-        imagen: "producto4.jpg"
+        imagen: "SUDADERAHELLSTAR4.jpg"
     },
 
     {
