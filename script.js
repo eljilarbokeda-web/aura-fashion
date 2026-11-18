@@ -9,7 +9,7 @@
 // Ejemplo:
 // 573001234567
 
-const NUMERO_WHATSAPP = "3147122064";
+const NUMERO_WHATSAPP = "573147122064";
 
 
 // ==========================================
@@ -49,57 +49,54 @@ const productos = [
         precio: 95000,
         imagen: "SUDADERAHELLSTAR4.jpg"
     },
-
     {
         id: 5,
-        nombre: "Pantalón Hombre",
-        categoria: "Hombre",
-        descripcion: "Pantalón cómodo y versátil.",
+        nombre: "",
+        categoria: "HOMBRE",
+        descripcion: ".",
         precio: 115000,
         imagen: "producto5.jpg"
     },
-
     {
         id: 6,
-        nombre: "Conjunto Fashion",
+        nombre: "",
         categoria: "Novedades",
-        descripcion: "Conjunto moderno para destacar tu estilo.",
+        descripcion: ".",
         precio: 150000,
         imagen: "producto6.jpg"
     },
-     {
+    {
         id: 7,
-        nombre: "Conjunto Fashion",
+        nombre: "",
         categoria: "Novedades",
-        descripcion: "Conjunto moderno para destacar tu estilo.",
+        descripcion: ".",
         precio: 150000,
-        imagen: "producto6.jpg"
+        imagen: "producto7.jpg"
     },
-     {
+    {
         id: 8,
-        nombre: "Conjunto Fashion",
+        nombre: "",
         categoria: "Novedades",
-        descripcion: "Conjunto moderno para destacar tu estilo.",
+        descripcion: ".",
         precio: 150000,
-        imagen: "producto6.jpg"
+        imagen: "producto8.jpg"
     },
-     {
+    {
         id: 9,
-        nombre: "Conjunto Fashion",
+        nombre: "",
         categoria: "Novedades",
-        descripcion: "Conjunto moderno para destacar tu estilo.",
+        descripcion: ".",
         precio: 150000,
-        imagen: "producto6.jpg"
+        imagen: "producto9.jpg"
     },
-     {
+    {
         id: 10,
-        nombre: "Conjunto Fashion",
+        nombre: "",
         categoria: "Novedades",
-        descripcion: "Conjunto moderno para destacar tu estilo.",
+        descripcion: ".",
         precio: 50000,
-        imagen: "producto6.jpg"
+        imagen: "producto10.jpg"
     }
-
 ];
 
 
@@ -115,13 +112,11 @@ let carrito = [];
 // ==========================================
 
 function formatoPrecio(precio) {
-
     return precio.toLocaleString("es-CO", {
         style: "currency",
         currency: "COP",
         maximumFractionDigits: 0
     });
-
 }
 
 
@@ -130,22 +125,14 @@ function formatoPrecio(precio) {
 // ==========================================
 
 function mostrarProductos() {
-
-    const contenedor =
-        document.getElementById("productos-container");
-
+    const contenedor = document.getElementById("productos-container");
     contenedor.innerHTML = "";
 
-
     productos.forEach(producto => {
-
         const tarjeta = document.createElement("div");
-
         tarjeta.classList.add("product-card");
 
-
         tarjeta.innerHTML = `
-
             <img
                 src="${producto.imagen}"
                 alt="${producto.nombre}"
@@ -153,7 +140,6 @@ function mostrarProductos() {
             >
 
             <div class="product-info">
-
                 <span class="product-category">
                     ${producto.categoria}
                 </span>
@@ -167,30 +153,71 @@ function mostrarProductos() {
                 </p>
 
                 <div class="product-bottom">
-
                     <span class="price">
                         ${formatoPrecio(producto.precio)}
                     </span>
 
                     <button
                         class="add-button"
-                        onclick="agregarAlCarrito(${producto.id})">
-
+                        onclick="agregarAlCarrito(${producto.id}, this)">
                         + Añadir
-
                     </button>
-
                 </div>
-
             </div>
-
         `;
 
-
         contenedor.appendChild(tarjeta);
+    });
+}
 
+
+// ==========================================
+// NOTIFICACIÓN FLOTANTE (TOAST)
+// ==========================================
+
+function mostrarNotificacion(mensaje) {
+    // Si ya hay una notificación en pantalla, la quitamos para que no se monten
+    const alertaPrevia = document.getElementById("notificacion-carrito");
+    if (alertaPrevia) {
+        alertaPrevia.remove();
+    }
+
+    const toast = document.createElement("div");
+    toast.id = "notificacion-carrito";
+    toast.textContent = mensaje;
+
+    Object.assign(toast.style, {
+        position: "fixed",
+        bottom: "25px",
+        right: "25px",
+        backgroundColor: "#111111",
+        color: "#ffffff",
+        padding: "14px 22px",
+        borderRadius: "8px",
+        boxShadow: "0 4px 15px rgba(0,0,0,0.3)",
+        fontFamily: "'Montserrat', sans-serif",
+        fontSize: "14px",
+        fontWeight: "600",
+        zIndex: "9999",
+        opacity: "0",
+        transform: "translateY(10px)",
+        transition: "all 0.3s ease"
     });
 
+    document.body.appendChild(toast);
+
+    // Animación de entrada
+    setTimeout(() => {
+        toast.style.opacity = "1";
+        toast.style.transform = "translateY(0)";
+    }, 10);
+
+    // Desaparece después de 2.5 segundos
+    setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(10px)";
+        setTimeout(() => toast.remove(), 300);
+    }, 2500);
 }
 
 
@@ -198,41 +225,37 @@ function mostrarProductos() {
 // AÑADIR AL CARRITO
 // ==========================================
 
-function agregarAlCarrito(id) {
-
-    const producto = productos.find(
-        producto => producto.id === id
-    );
-
-
-    const productoExistente =
-        carrito.find(item => item.id === id);
-
+function agregarAlCarrito(id, boton) {
+    const producto = productos.find(producto => producto.id === id);
+    const productoExistente = carrito.find(item => item.id === id);
 
     if (productoExistente) {
-
         productoExistente.cantidad++;
-
     } else {
-
         carrito.push({
-
             ...producto,
-
             cantidad: 1
-
         });
-
     }
-
 
     actualizarCarrito();
 
+    // 1. Mostrar notificación flotante en la esquina
+    mostrarNotificacion("🛍️ Añadiste una compra al carrito");
 
-    // Abrir carrito automáticamente
+    // 2. Cambiar temporalmente el botón presionado
+    if (boton) {
+        const textoOriginal = boton.innerText;
+        boton.innerText = "✓ Añadido";
+        boton.style.backgroundColor = "#25D366";
+        boton.style.color = "#ffffff";
 
-    abrirCarrito();
-
+        setTimeout(() => {
+            boton.innerText = textoOriginal;
+            boton.style.backgroundColor = "";
+            boton.style.color = "";
+        }, 1200);
+    }
 }
 
 
@@ -241,60 +264,38 @@ function agregarAlCarrito(id) {
 // ==========================================
 
 function actualizarCarrito() {
+    const contenedor = document.getElementById("carrito-productos");
+    const contador = document.getElementById("contador");
+    const totalElemento = document.getElementById("total");
 
-    const contenedor =
-        document.getElementById("carrito-productos");
-
-    const contador =
-        document.getElementById("contador");
-
-    const totalElemento =
-        document.getElementById("total");
-
-
-    contador.textContent =
-        carrito.reduce(
-            (total, producto) =>
-                total + producto.cantidad,
-            0
-        );
-
+    contador.textContent = carrito.reduce(
+        (total, producto) => total + producto.cantidad,
+        0
+    );
 
     if (carrito.length === 0) {
-
         contenedor.innerHTML = `
             <p class="empty-cart">
                 Tu carrito está vacío.
             </p>
         `;
-
         totalElemento.textContent = "$0";
-
         return;
-
     }
-
 
     contenedor.innerHTML = "";
 
-
     carrito.forEach(producto => {
-
-        const item =
-            document.createElement("div");
-
+        const item = document.createElement("div");
         item.classList.add("cart-item");
 
-
         item.innerHTML = `
-
             <img
                 src="${producto.imagen}"
                 alt="${producto.nombre}"
             >
 
             <div class="cart-item-info">
-
                 <h4>
                     ${producto.nombre}
                 </h4>
@@ -304,69 +305,34 @@ function actualizarCarrito() {
                 </div>
 
                 <div class="quantity">
-
-                    <button
-                        onclick="cambiarCantidad(
-                            ${producto.id},
-                            -1
-                        )">
-
+                    <button onclick="cambiarCantidad(${producto.id}, -1)">
                         −
-
                     </button>
-
 
                     <span>
                         ${producto.cantidad}
                     </span>
 
-
-                    <button
-                        onclick="cambiarCantidad(
-                            ${producto.id},
-                            1
-                        )">
-
+                    <button onclick="cambiarCantidad(${producto.id}, 1)">
                         +
-
                     </button>
 
-
-                    <button
-                        class="remove"
-                        onclick="eliminarProducto(
-                            ${producto.id}
-                        )">
-
+                    <button class="remove" onclick="eliminarProducto(${producto.id})">
                         Eliminar
-
                     </button>
-
                 </div>
-
             </div>
-
         `;
 
-
         contenedor.appendChild(item);
-
     });
 
+    const total = carrito.reduce(
+        (suma, producto) => suma + producto.precio * producto.cantidad,
+        0
+    );
 
-    const total =
-        carrito.reduce(
-            (suma, producto) =>
-                suma +
-                producto.precio *
-                producto.cantidad,
-            0
-        );
-
-
-    totalElemento.textContent =
-        formatoPrecio(total);
-
+    totalElemento.textContent = formatoPrecio(total);
 }
 
 
@@ -375,29 +341,17 @@ function actualizarCarrito() {
 // ==========================================
 
 function cambiarCantidad(id, cambio) {
-
-    const producto =
-        carrito.find(item => item.id === id);
-
+    const producto = carrito.find(item => item.id === id);
 
     if (!producto) return;
 
-
     producto.cantidad += cambio;
 
-
     if (producto.cantidad <= 0) {
-
-        carrito =
-            carrito.filter(
-                item => item.id !== id
-            );
-
+        carrito = carrito.filter(item => item.id !== id);
     }
 
-
     actualizarCarrito();
-
 }
 
 
@@ -406,15 +360,8 @@ function cambiarCantidad(id, cambio) {
 // ==========================================
 
 function eliminarProducto(id) {
-
-    carrito =
-        carrito.filter(
-            producto => producto.id !== id
-        );
-
-
+    carrito = carrito.filter(producto => producto.id !== id);
     actualizarCarrito();
-
 }
 
 
@@ -423,12 +370,7 @@ function eliminarProducto(id) {
 // ==========================================
 
 function abrirCarrito() {
-
-    document
-        .getElementById("carrito-overlay")
-        .classList
-        .add("active");
-
+    document.getElementById("carrito-overlay").classList.add("active");
 }
 
 
@@ -437,12 +379,7 @@ function abrirCarrito() {
 // ==========================================
 
 function cerrarCarrito() {
-
-    document
-        .getElementById("carrito-overlay")
-        .classList
-        .remove("active");
-
+    document.getElementById("carrito-overlay").classList.remove("active");
 }
 
 
@@ -451,73 +388,34 @@ function cerrarCarrito() {
 // ==========================================
 
 function comprarWhatsApp() {
-
     if (carrito.length === 0) {
-
-        alert(
-            "Tu carrito está vacío."
-        );
-
+        alert("Tu carrito está vacío.");
         return;
-
     }
 
-
-    let mensaje =
-        "Hola, Aura Fashion 👋\n\n";
-
-    mensaje +=
-        "Quiero realizar el siguiente pedido:\n\n";
-
+    let mensaje = "Hola, Aura Fashion 👋\n\n";
+    mensaje += "Quiero realizar el siguiente pedido:\n\n";
 
     carrito.forEach(producto => {
+        const subtotal = producto.precio * producto.cantidad;
 
-        const subtotal =
-            producto.precio *
-            producto.cantidad;
-
-
-        mensaje +=
-            `🛍️ ${producto.nombre}\n`;
-
-        mensaje +=
-            `Cantidad: ${producto.cantidad}\n`;
-
-        mensaje +=
-            `Precio: ${formatoPrecio(producto.precio)}\n`;
-
-        mensaje +=
-            `Subtotal: ${formatoPrecio(subtotal)}\n\n`;
-
+        mensaje += `🛍️ ${producto.nombre}\n`;
+        mensaje += `Cantidad: ${producto.cantidad}\n`;
+        mensaje += `Precio: ${formatoPrecio(producto.precio)}\n`;
+        mensaje += `Subtotal: ${formatoPrecio(subtotal)}\n\n`;
     });
 
-
-    const total =
-        carrito.reduce(
-            (suma, producto) =>
-                suma +
-                producto.precio *
-                producto.cantidad,
-            0
-        );
-
-
-    mensaje +=
-        `💰 TOTAL: ${formatoPrecio(total)}\n\n`;
-
-    mensaje +=
-        "Quedo atento/a para confirmar mi pedido. 😊";
-
-
-    const url =
-        `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
-
-
-    window.open(
-        url,
-        "_blank"
+    const total = carrito.reduce(
+        (suma, producto) => suma + producto.precio * producto.cantidad,
+        0
     );
 
+    mensaje += `💰 TOTAL: ${formatoPrecio(total)}\n\n`;
+    mensaje += "Quedo atento/a para confirmar mi pedido. 😊";
+
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
 }
 
 
@@ -526,20 +424,10 @@ function comprarWhatsApp() {
 // ==========================================
 
 function contactarWhatsApp() {
+    const mensaje = "Hola Aura Fashion 👋, quiero obtener información sobre sus productos.";
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
 
-    const mensaje =
-        "Hola Aura Fashion 👋, quiero obtener información sobre sus productos.";
-
-
-    const url =
-        `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
-
-
-    window.open(
-        url,
-        "_blank"
-    );
-
+    window.open(url, "_blank");
 }
 
 
@@ -548,5 +436,4 @@ function contactarWhatsApp() {
 // ==========================================
 
 mostrarProductos();
-
 actualizarCarrito();
