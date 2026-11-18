@@ -96,6 +96,30 @@ const productos = [
         descripcion: ".",
         precio: 50000,
         imagen: "producto10.jpg"
+    },
+    {
+        id: 11,
+        nombre: "",
+        categoria: "Novedades",
+        descripcion: ".",
+        precio: 150000,
+        imagen: "producto9.jpg"
+    },
+    {
+        id: 12,
+        nombre: "",
+        categoria: "Novedades",
+        descripcion: ".",
+        precio: 150000,
+        imagen: "producto9.jpg"
+    },
+    {
+        id: 13,
+        nombre: "",
+        categoria: "Novedades",
+        descripcion: ".",
+        precio: 150000,
+        imagen: "producto9.jpg"
     }
 ];
 
